@@ -1,4 +1,4 @@
-#MarketFetch
+MarketFetch
 
 ### What is it?
 
