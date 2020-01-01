@@ -27,9 +27,12 @@ class OptionChainTDA extends OptionChainBase with APITDA {
     val alldates = (calls.map(_.value.asInstanceOf[LinkedHashMap[String, ujson.Obj]]).getOrElse(new LinkedHashMap[String, ujson.Obj]).values.toSeq ++ puts.map(_.value.asInstanceOf[LinkedHashMap[String, ujson.Obj]]).getOrElse(new LinkedHashMap[String, ujson.Obj]).values.toSeq).toList
     // all dates is a list (::) containing 1) put and 2) call.  Now get a map of all the strikes.
     val allstrikes = alldates.flatMap(_.value.asInstanceOf[LinkedHashMap[String, ujson.Arr]].values)
-    // get a string
-    val resultarray = allstrikes.flatMap(_.value.map(_.value.asInstanceOf[LinkedHashMap[String, AnyVal]](specific.get)))
-    resultarray.toString()
+    // I'm being very lazy here but I don't really use this one
+    if (specific == None) {
+      allstrikes.flatMap(_.value.map(_.value.asInstanceOf[LinkedHashMap[String, AnyVal]])).toString()
+    } else {
+      allstrikes.flatMap(_.value.map(_.value.asInstanceOf[LinkedHashMap[String, AnyVal]](specific.get))).toString()
+    }
   }
 
 }

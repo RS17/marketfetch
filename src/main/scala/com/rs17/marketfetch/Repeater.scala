@@ -1,13 +1,12 @@
 package com.rs17.marketfetch
 
 import java.io._
-import java.util.Properties
 
 import scala.io.Source
 
 class Repeater extends StuffHandler {
   override def handleArgs(args: Array[String]): Array[Any] = {
-    val retarr = args.drop(1)
+    val retarr = args.drop(1) // drop "repeater" argument
     retarr.asInstanceOf[Array[Any]]
   }
 

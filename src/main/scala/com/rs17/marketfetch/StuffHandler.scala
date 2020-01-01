@@ -1,16 +1,10 @@
 package com.rs17.marketfetch
 
-import scala.collection.mutable.LinkedHashMap
-
 object StuffHandler {
 
   def getHandler(firstarg: String): StuffHandler = {
-    firstarg match {
-      case "option" => new OptionChainTDA
-      case "optionsecret" => new OptionChainTDASecret
-      case "repeater" => new Repeater
-      case _ => new QuoteTDA // assume quote if no first argument
-    }
+    // edit MFProperties.classList to add new commands/classes
+    return MFProperties.commandList.getOrElse(firstarg, new QuoteTDA)
   }
 }
 
